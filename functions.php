@@ -16,20 +16,24 @@ define( 'ARKHE_CHILD_URI', get_stylesheet_directory_uri() );
  * style.css 読み込み
  */
 add_action( 'wp_enqueue_scripts', function() {
+
+	// ブラウザキャッシュを防ぐためのタイムスタンプ
 	$time_stamp = date('mdgis');
 
 	// フロント用のスタイル
 	wp_enqueue_style( 'arkhe-child-style', ARKHE_CHILD_URI . '/style.css', [], $time_stamp );
 
 	// フロント & エディター共通のスタイル
-	wp_enqueue_style( 'arkhe-child-common', ARKHE_CHILD_URI . '/assets/css/common.css', [], LMFFG_VERSION );
+	wp_enqueue_style( 'arkhe-child-common', ARKHE_CHILD_URI . '/css/common.css', [], $time_stamp );
 } );
+
 
 /**
  * エディター用のファイルを読み込む
  */
 add_action( 'enqueue_block_editor_assets', function() {
 
+	// ブラウザキャッシュを防ぐためのタイムスタンプ
 	$time_stamp = date('mdgis');
 
 	// フロント & エディター共通のスタイル
@@ -41,4 +45,12 @@ add_action( 'enqueue_block_editor_assets', function() {
 	// エディター用のスクリプト
 	wp_enqueue_script( 'arkhe-child-editor-script', ARKHE_CHILD_URI . '/js/editor.js', [], $time_stamp, true );
 
+} );
+
+
+/**
+ * add_theme_support() 記述場所
+ */
+add_action( 'after_setup_theme', function() {
+	// add_theme_support( '...' );
 }, 20 );
