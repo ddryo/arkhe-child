@@ -54,3 +54,11 @@ add_action( 'enqueue_block_editor_assets', function() {
 add_action( 'after_setup_theme', function() {
 	// add_theme_support( '...' );
 }, 20 );
+
+
+/**
+ * init フック 記述場所
+ */
+add_action( 'init', function() {
+	// 
+}, 20 );
